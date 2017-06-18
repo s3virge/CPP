@@ -1,0 +1,1261 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0070)http://www.blackbeltcoder.com/Articles/controls/mfc-hex-editor-control -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script src="./MFC Hex Editor Control_files/cb=gapi.loaded_1" async=""></script><script src="./MFC Hex Editor Control_files/cb=gapi.loaded_0" async=""></script><script type="text/javascript" src="./MFC Hex Editor Control_files/plusone.js.загружено" gapi_processed="true"></script><script type="text/javascript" src="http://m.addthis.com/live/red_lojson/300lo.json?si=58712bb69f0f752e&amp;bkl=0&amp;bl=1&amp;pdt=1217&amp;sid=58712bb69f0f752e&amp;pub=scwebgroup&amp;rev=v7.9.2-wp&amp;ln=ru&amp;pc=men&amp;cb=0&amp;ab=-&amp;dp=www.blackbeltcoder.com&amp;fp=Articles%2Fcontrols%2Fmfc-hex-editor-control&amp;fr=Articles%2Fcontrols%2Fmfc-hex-editor-control&amp;of=0&amp;pd=0&amp;irt=1&amp;vcl=1&amp;md=0&amp;ct=0&amp;tct=0&amp;abt=0&amp;cdn=0&amp;pi=1&amp;rb=2&amp;gen=100&amp;chr=UTF-8&amp;mk=hex%20editor%2Chex%2Ceditor%2Ccontrol%2Cmfc&amp;colc=1483811768981&amp;jsl=32&amp;uvs=58712bb697f6d4f3000&amp;skipb=1&amp;callback=addthis.cbs.oln9_74562510437395970"></script><script type="text/javascript" src="http://m.addthisedge.com/live/boost/scwebgroup/_ate.track.config_resp"></script><title>
+	MFC Hex Editor Control
+</title>
+	
+<link href="./MFC Hex Editor Control_files/Style.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" async="" src="./MFC Hex Editor Control_files/ga.js.загружено"></script><script src="./MFC Hex Editor Control_files/navmenu.js.загружено" type="text/javascript"></script>
+
+	<link rel="alternate" type="application/rss+xml" title="Black Belt Coder Article Feed" href="http://www.blackbeltcoder.com/Feeds/Articles"><link rel="alternate" type="application/rss+xml" title="Black Belt Coder News Feed" href="http://www.blackbeltcoder.com/Feeds/News"><script type="text/javascript" src="http://partner.googleadservices.com/gampad/google_service.js">
+
+</script>
+<script type="text/javascript">
+	GS_googleAddAdSenseService("ca-pub-2131599798121504");
+	GS_googleEnableAllServices();
+
+</script>
+<script type="text/javascript">
+	GA_googleAddSlot("ca-pub-2131599798121504", "bbc_header_468x60_banner");
+	GA_googleAddSlot("ca-pub-2131599798121504", "bbc_footer_468x60_banner");
+	GA_googleAddSlot("ca-pub-2131599798121504", "bbc_sidebar_160x600_tower");
+
+</script>
+<script type="text/javascript">
+	GA_googleFetchAds();
+
+</script>
+
+
+	
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-9308006-10']);
+		_gaq.push(['_trackPageview']);
+		(function () {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+<meta name="description" content="This article presents MFC code for a hex editor control, designed to be placed on a dialog box."><meta name="keywords" content="hex editor, hex, editor, control, mfc"><style type="text/css">.at-icon{fill:#fff;border:0}.at-icon-wrapper{display:inline-block;overflow:hidden}a .at-icon-wrapper{cursor:pointer}.at-rounded,.at-rounded-element .at-icon-wrapper{border-radius:12%}.at-circular,.at-circular-element .at-icon-wrapper{border-radius:50%}.addthis_32x32_style .at-icon{width:2pc;height:2pc}.addthis_24x24_style .at-icon{width:24px;height:24px}.addthis_20x20_style .at-icon{width:20px;height:20px}.addthis_16x16_style .at-icon{width:1pc;height:1pc}#at16lb{display:none;position:absolute;top:0;left:0;width:100%;height:100%;z-index:1001;background-color:#000;opacity:.001}#at_complete,#at_error,#at_share,#at_success{position:static!important}.at15dn{display:none}#at15s,#at16p,#at16p form input,#at16p label,#at16p textarea,#at_share .at_item{font-family:arial,helvetica,tahoma,verdana,sans-serif!important;font-size:9pt!important;outline-style:none;outline-width:0;line-height:1em}* html #at15s.mmborder{position:absolute!important}#at15s.mmborder{position:fixed!important;width:250px!important}#at15s{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABtJREFUeNpiZGBgaGAgAjAxEAlGFVJHIUCAAQDcngCUgqGMqwAAAABJRU5ErkJggg==);float:none;line-height:1em;margin:0;overflow:visible;padding:5px;text-align:left;position:absolute}#at15s a,#at15s span{outline:0;direction:ltr;text-transform:none}#at15s .at-label{margin-left:5px}#at15s .at-icon-wrapper{width:1pc;height:1pc;vertical-align:middle}#at15s .at-icon{width:1pc;height:1pc}.at4-icon{display:inline-block;background-repeat:no-repeat;background-position:top left;margin:0;overflow:hidden;cursor:pointer}.addthis_16x16_style .at4-icon,.addthis_default_style .at4-icon,.at4-icon,.at-16x16{width:1pc;height:1pc;line-height:1pc;background-size:1pc!important}.addthis_32x32_style .at4-icon,.at-32x32{width:2pc;height:2pc;line-height:2pc;background-size:2pc!important}.addthis_24x24_style .at4-icon,.at-24x24{width:24px;height:24px;line-height:24px;background-size:24px!important}.addthis_20x20_style .at4-icon,.at-20x20{width:20px;height:20px;line-height:20px;background-size:20px!important}.at4-icon.circular,.circular .at4-icon,.circular.aticon{border-radius:50%}.at4-icon.rounded,.rounded .at4-icon{border-radius:4px}.at4-icon-left{float:left}#at15s .at4-icon{text-indent:20px;padding:0;overflow:visible;white-space:nowrap;background-size:1pc;width:1pc;height:1pc;background-position:top left;display:inline-block;line-height:1pc}.addthis_vertical_style .at4-icon,.at4-follow-container .at4-icon{margin-right:5px}html>body #at15s{width:250px!important}#at15s.atm{background:none!important;padding:0!important;width:10pc!important}#at15s_inner{background:#fff;border:1px solid #fff;margin:0}#at15s_head{position:relative;background:#f2f2f2;padding:4px;cursor:default;border-bottom:1px solid #e5e5e5}.at15s_head_success{background:#cafd99!important;border-bottom:1px solid #a9d582!important}.at15s_head_success a,.at15s_head_success span{color:#000!important;text-decoration:none}#at15s_brand,#at15sptx,#at16_brand{position:absolute}#at15s_brand{top:4px;right:4px}.at15s_brandx{right:20px!important}a#at15sptx{top:4px;right:4px;text-decoration:none;color:#4c4c4c;font-weight:700}#at15sptx:hover{text-decoration:underline}#at16_brand{top:5px;right:30px;cursor:default}#at_hover{padding:4px}#at_hover .at_item,#at_share .at_item{background:#fff!important;float:left!important;color:#4c4c4c!important}#at_share .at_item .at-icon-wrapper{margin-right:5px}#at_hover .at_bold{font-weight:700;color:#000!important}#at_hover .at_item{width:7pc!important;padding:2px 3px!important;margin:1px;text-decoration:none!important}#at_hover .at_item.athov,#at_hover .at_item:focus,#at_hover .at_item:hover{margin:0!important}#at_hover .at_item.athov,#at_hover .at_item:focus,#at_hover .at_item:hover,#at_share .at_item.athov,#at_share .at_item:hover{background:#f2f2f2!important;border:1px solid #e5e5e5;color:#000!important;text-decoration:none}.ipad #at_hover .at_item:focus{background:#fff!important;border:1px solid #fff}.at15t{display:block!important;height:1pc!important;line-height:1pc!important;padding-left:20px!important;background-position:0 0;text-align:left}.addthis_button,.at15t{cursor:pointer}.addthis_toolbox a.at300b,.addthis_toolbox a.at300m{width:auto}.addthis_toolbox a{margin-bottom:5px;line-height:initial}.addthis_toolbox.addthis_vertical_style{width:200px}.addthis_button_facebook_like .fb_iframe_widget{line-height:100%}.addthis_button_facebook_like iframe.fb_iframe_widget_lift{max-width:none}.addthis_toolbox a.addthis_button_counter,.addthis_toolbox a.addthis_button_facebook_like,.addthis_toolbox a.addthis_button_facebook_send,.addthis_toolbox a.addthis_button_facebook_share,.addthis_toolbox a.addthis_button_foursquare,.addthis_toolbox a.addthis_button_google_plusone,.addthis_toolbox a.addthis_button_linkedin_counter,.addthis_toolbox a.addthis_button_pinterest_pinit,.addthis_toolbox a.addthis_button_stumbleupon_badge,.addthis_toolbox a.addthis_button_tweet{display:inline-block}.at-share-tbx-element .google_plusone_iframe_widget>span>div{vertical-align:top!important}.addthis_toolbox span.addthis_follow_label{display:none}.addthis_toolbox.addthis_vertical_style span.addthis_follow_label{display:block;white-space:nowrap}.addthis_toolbox.addthis_vertical_style a{display:block}.addthis_toolbox.addthis_vertical_style.addthis_32x32_style a{line-height:2pc;height:2pc}.addthis_toolbox.addthis_vertical_style .at300bs{margin-right:4px;float:left}.addthis_toolbox.addthis_20x20_style span{line-height:20px}.addthis_toolbox.addthis_32x32_style span{line-height:2pc}.addthis_toolbox.addthis_pill_combo_style .addthis_button_compact .at15t_compact,.addthis_toolbox.addthis_pill_combo_style a{float:left}.addthis_toolbox.addthis_pill_combo_style a.addthis_button_tweet{margin-top:-2px}.addthis_toolbox.addthis_pill_combo_style .addthis_button_compact .at15t_compact{margin-right:4px}.addthis_default_style .addthis_separator{margin:0 5px;display:inline}div.atclear{clear:both}.addthis_default_style .addthis_separator,.addthis_default_style .at4-icon,.addthis_default_style .at300b,.addthis_default_style .at300bo,.addthis_default_style .at300bs,.addthis_default_style .at300m{float:left}.at300b img,.at300bo img{border:0}a.at300b .at4-icon,a.at300m .at4-icon{display:block}.addthis_default_style .at300b,.addthis_default_style .at300bo,.addthis_default_style .at300m{padding:0 2px}.at300b,.at300bo,.at300bs,.at300m{cursor:pointer}.addthis_button_facebook_like.at300b:hover,.addthis_button_facebook_like.at300bs:hover,.addthis_button_facebook_send.at300b:hover,.addthis_button_facebook_send.at300bs:hover{opacity:1}.addthis_20x20_style .at15t,.addthis_20x20_style .at300bs{overflow:hidden;display:block;height:20px!important;width:20px!important;line-height:20px!important}.addthis_32x32_style .at15t,.addthis_32x32_style .at300bs{overflow:hidden;display:block;height:2pc!important;width:2pc!important;line-height:2pc!important}.at300bs{overflow:hidden;display:block;background-position:0 0;height:1pc;width:1pc;line-height:1pc!important}.addthis_default_style .at15t_compact,.addthis_default_style .at15t_expanded{margin-right:4px}#at_share .at_item{width:123px!important;padding:4px;margin-right:2px;border:1px solid #fff}#at16p{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABtJREFUeNpiZGBgaGAgAjAxEAlGFVJHIUCAAQDcngCUgqGMqwAAAABJRU5ErkJggg==);z-index:10000001;position:absolute;top:50%;left:50%;width:300px;padding:10px;margin:0 auto;margin-top:-185px;margin-left:-155px;font-family:arial,helvetica,tahoma,verdana,sans-serif;font-size:9pt;color:#5e5e5e}#at_share{margin:0;padding:0}#at16pt{position:relative;background:#f2f2f2;height:13px;padding:5px 10px}#at16pt a,#at16pt h4{font-weight:700}#at16pt h4{display:inline;margin:0;padding:0;font-size:9pt;color:#4c4c4c;cursor:default}#at16pt a{position:absolute;top:5px;right:10px;color:#4c4c4c;text-decoration:none;padding:2px}#at15sptx:focus,#at16pt a:focus{outline:thin dotted}#at15s #at16pf a{top:1px}#_atssh{width:1px!important;height:1px!important;border:0!important}.atm{width:10pc!important;padding:0;margin:0;line-height:9pt;letter-spacing:normal;font-family:arial,helvetica,tahoma,verdana,sans-serif;font-size:9pt;color:#444;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABtJREFUeNpiZGBgaGAgAjAxEAlGFVJHIUCAAQDcngCUgqGMqwAAAABJRU5ErkJggg==);padding:4px}.atm-f{text-align:right;border-top:1px solid #ddd;padding:5px 8px}.atm-i{background:#fff;border:1px solid #d5d6d6;padding:0;margin:0;box-shadow:1px 1px 5px rgba(0,0,0,.15)}.atm-s{margin:0!important;padding:0!important}.atm-s a:focus{border:transparent;outline:0;-webkit-transition:none;transition:none}#at_hover.atm-s a,.atm-s a{display:block;text-decoration:none;padding:4px 10px;color:#235dab!important;font-weight:400;font-style:normal;-webkit-transition:none;transition:none}#at_hover.atm-s .at_bold{color:#235dab!important}#at_hover.atm-s a:hover,.atm-s a:hover{background:#2095f0;text-decoration:none;color:#fff!important}#at_hover.atm-s .at_bold{font-weight:700}#at_hover.atm-s a:hover .at_bold{color:#fff!important}.atm-s a .at-label{vertical-align:middle;margin-left:5px;direction:ltr}.at_PinItButton{display:block;width:40px;height:20px;padding:0;margin:0;background-image:url(//s7.addthis.com/static/t00/pinit00.png);background-repeat:no-repeat}.at_PinItButton:hover{background-position:0 -20px}.addthis_toolbox .addthis_button_pinterest_pinit{position:relative}.at-share-tbx-element .fb_iframe_widget span{vertical-align:baseline!important}#at16pf{height:auto;text-align:right;padding:4px 8px}.at-privacy-info{position:absolute;left:7px;bottom:7px;cursor:pointer;text-decoration:none;font-family:helvetica,arial,sans-serif;font-size:10px;line-height:9pt;letter-spacing:.2px;color:#666}.at-privacy-info:hover{color:#000}.body .wsb-social-share .wsb-social-share-button-vert{padding-top:0;padding-bottom:0}.body .wsb-social-share.addthis_counter_style .addthis_button_tweet.wsb-social-share-button{padding-top:44px}.body .wsb-social-share.addthis_counter_style .addthis_button_google_plusone.wsb-social-share-button{padding-top:4px}@media print{#at4-follow,#at4-share,#at4-thankyou,#at4-whatsnext,#at4m-mobile,#at15s,.at4,.at4-recommended{display:none!important}}@media screen and (max-width:400px){.at4win{width:100%}}@media screen and (max-height:700px) and (max-width:400px){.at4-thankyou-inner .at4-recommended-container{height:122px;overflow:hidden}.at4-thankyou-inner .at4-recommended .at4-recommended-item:first-child{border-bottom:1px solid #c5c5c5}}</style><style type="text/css">.at-branding-logo{font-family:helvetica,arial,sans-serif;text-decoration:none;font-size:10px;display:inline-block;margin:2px 0;letter-spacing:.2px}.at-branding-logo .at-branding-icon{background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAMAAAC67D+PAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAZQTFRF////+GlNUkcc1QAAAB1JREFUeNpiYIQDBjQmAwMmkwEM0JnY1WIxFyDAABGeAFEudiZsAAAAAElFTkSuQmCC")}.at-branding-logo .at-branding-icon,.at-branding-logo .at-privacy-icon{display:inline-block;height:10px;width:10px;margin-left:4px;margin-right:3px;margin-bottom:-1px;background-repeat:no-repeat}.at-branding-logo .at-privacy-icon{background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAKCAMAAABR24SMAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABhQTFRF8fr9ot/xXcfn2/P5AKva////////AKTWodjhjAAAAAd0Uk5T////////ABpLA0YAAAA6SURBVHjaJMzBDQAwCAJAQaj7b9xifV0kUKJ9ciWxlzWEWI5gMF65KUTv0VKkjVeTerqE/x7+9BVgAEXbAWI8QDcfAAAAAElFTkSuQmCC")}.at-branding-logo span{text-decoration:none}.at-branding-logo .at-branding-addthis,.at-branding-logo .at-branding-powered-by{color:#666}.at-branding-logo .at-branding-addthis:hover{color:#333}.at-cv-with-image .at-branding-addthis,.at-cv-with-image .at-branding-addthis:hover{color:#fff}a.at-branding-logo:visited{color:initial}.at-branding-info{display:inline-block;padding:0 5px;color:#666;border:1px solid #666;border-radius:50%;font-size:10px;line-height:9pt;opacity:.7;transition:all .3s ease;text-decoration:none}.at-branding-info span{border:0;clip:rect(0 0 0 0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px}.at-branding-info:before{content:'i';font-family:Times New Roman}.at-branding-info:hover{color:#0780df;border-color:#0780df}</style><style type="text/css">#lleo_dialog, #lleo_dialog * {
+    margin: 0 !important;
+	padding: 0 !important;
+	background: none !important;
+	border: none 0 !important;
+	position: static !important;
+	vertical-align: baseline !important;
+	font: normal 13px Arial, Helvetica !important;
+	line-height: 15px !important;
+	color: #000 !important;
+	overflow: visible !important;
+	width: auto !important;
+	height: auto !important;
+	float: none !important;
+	visibility: visible !important;
+	text-align: left !important;
+	border-collapse: separate !important;
+	border-spacing: 2px !important;
+}
+
+#lleo_dialog iframe {
+	height: 0 !important;
+	width: 0 !important;
+}
+
+#lleo_dialog {
+    position: absolute !important;
+    background: #fff !important;
+    border: solid 1px #ccc !important;
+    padding: 7px 0 0 !important;
+    left: -999px;
+    top: -999px;
+	/*max-width: 450px !important;*/
+    width: 440px !important;
+    overflow: hidden;
+    display: block !important;
+    z-index: 999999999 !important;
+    opacity: 0 !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18) !important;
+	-moz-border-radius: 3px !important;
+	-webkit-border-radius: 3px !important;
+	border-radius: 3px !important;
+}
+#lleo_dialog.lleo_show {
+    opacity: 1 !important;
+    -webkit-transition: opacity 0.3s !important;
+}
+#lleo_dialog input::-webkit-input-placeholder {
+    color: #aaa !important;
+}
+#lleo_dialog .lleo_has_pic #lleo_word {
+	margin-right: 80px !important;
+}
+#lleo_dialog #lleo_translationsCopntainer1 {
+	position: relative !important;
+}
+#lleo_dialog #lleo_translationsCopntainer2 {
+	padding: 7px 0 0 !important;
+	vertical-align: middle !important;
+}
+#lleo_dialog #lleo_word {
+    color: #000 !important;
+    margin: 0 5px 2px 0 !important;
+    /*float: left !important;*/
+}
+#lleo_dialog .lleo_has_sound #lleo_word {
+    margin-left: 17px !important;
+}
+#lleo_dialog #lleo_text {
+    font-weight: bold !important;
+    color: #d56e00 !important;
+    text-decoration: none !important;
+    cursor: default !important;
+}
+#lleo_dialog #lleo_text.lleo_known {
+    cursor: pointer !important;
+    text-decoration: underline !important;
+}
+#lleo_dialog #lleo_closeBtn {
+    position: absolute !important;
+    right: 6px !important;
+    top: 5px !important;
+    line-height: 1px !important;
+    text-decoration: none !important;
+    font-weight: bold !important;
+    font-size: 0 !important;
+    color: #aaa !important;
+    display: block !important;
+    padding: 2px !important;
+	z-index: 9999999999 !important;
+	width: 7px !important;
+	height: 7px !important;
+	padding: 0  !important;
+	margin: 0   !important;
+}
+
+#lleo_dialog #lleo_optionsBtn {
+    position: absolute !important; 
+    right: 1px !important;
+    top: 12px !important;
+    line-height: 1px !important;
+    text-decoration: none !important;
+    font-weight: bold !important;
+    font-size: 13px !important;
+    color: #aaa !important;
+    padding: 2px !important;
+	display: none;
+}
+#lleo_dialog #lleo_optionsBtn img{
+	width: 12px !important;
+	height: 12px !important;
+}
+#lleo_dialog #lleo_sound {
+    float: left !important;
+    width: 16px !important;
+    height: 16px !important;
+    margin-left: 12px !important;
+    background: 0 0 no-repeat !important;
+    cursor: pointer !important;
+    display: none !important;
+}
+#lleo_dialog .lleo_has_sound #lleo_sound {
+    display: block !important;
+}
+#lleo_dialog #lleo_picOuter {
+    position: absolute !important;
+    float: right !important;
+    right: 29px;
+    top: 0;
+    display: none !important;
+    z-index: 9 !important;
+}
+#lleo_dialog .lleo_has_pic #lleo_picOuter {
+    display: block !important;
+}
+#lleo_dialog #lleo_picOuter:hover {
+    z-index: 11 !important;
+}
+#lleo_dialog #lleo_pic,
+#lleo_dialog #lleo_picBig {
+    position: absolute !important;
+    top: 0 !important;
+    right: 0 !important;
+    border: solid 2px #fff !important;
+    -moz-border-radius: 2px !important;
+	-webkit-border-radius: 2px !important;
+	border-radius: 2px !important;
+    z-index: 1 !important;
+}
+#lleo_dialog #lleo_pic {
+	position: relative !important;
+    border: none !important;
+	width: 34px !important;
+}
+#lleo_dialog #lleo_picBig {
+    box-shadow: -1px 2px 4px rgba(0,0,0,0.3);
+    z-index: 2 !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+}
+#lleo_dialog #lleo_picOuter:hover #lleo_picBig {
+    visibility: visible !important;
+    opacity: 1 !important;
+    -webkit-transition: opacity 0.3s !important;
+    -webkit-transition-delay: 0.3s !important;
+}
+#lleo_dialog #lleo_transcription {
+    color: #486D85 !important;
+    margin: 0 0 4px 29px !important;
+    color: #aaaaaa !important;
+}
+#lleo_dialog .lleo_no_trans {
+    color: #aaa !important;
+}
+
+
+
+
+
+
+#lleo_dialog .ll-translation-counter {
+	float: right !important;
+    font-size: 11px !important;
+    color: #aaa !important;
+    padding: 2px 2px 1px 10px !important;
+}
+
+#lleo_dialog .ll-translation-text {
+	float: left !important;
+	width: 80% !important;
+}
+
+#lleo_dialog #lleo_trans a {
+    color: #3F669F !important;
+    padding: 1px 4px !important;
+    text-decoration: none !important;
+    text-overflow: ellipsis !important;
+    overflow: hidden !important;
+}
+
+#lleo_dialog .ll-translation-item {
+	width: 100% !important;
+	float: left !important; 
+	padding:1px 4px;
+	color: #3F669F !important;
+	padding: 3px !important;
+	border: solid 1px white !important;
+	-moz-border-radius: 2px !important;
+	-webkit-border-radius: 2px !important;
+	border-radius: 2px !important;
+}
+
+#lleo_dialog .ll-translation-item:hover {
+	border: solid 1px #9FC2C9 !important;
+    background: #EDF4F6 !important;
+	cursor: pointer !important;
+}
+
+#lleo_dialog .ll-translation-marker {
+	margin: 0px 5px 2px 2px !important;
+}
+
+
+
+
+
+#lleo_dialog #lleo_icons {
+    margin: 10px 0 7px !important;
+    color: #aaa !important;
+    line-height: 20px !important;
+    font-size: 11px !important;
+    clear: both !important;
+    padding-left: 16px !important;
+}
+#lleo_icons a {
+    display: inline-block !important;
+    width: 16px !important;
+    height: 16px !important;
+    margin: 0 0 -2px 3px !important;
+    text-decoration: none !important;
+    background: 0 0 no-repeat !important;
+    opacity: 0.5 !important;
+}
+#lleo_icons a:hover {
+    opacity: 1 !important;
+}
+#lleo_icons a.lleo_google     {background-position:-34px 0 !important;}
+#lleo_icons a.lleo_multitran  {background-position:-64px 0 !important;}
+#lleo_icons a.lleo_lingvo     {background-position:-51px 0 !important; width: 12px !important;}
+#lleo_icons a.lleo_dict       {background-position:-17px 0 !important;}
+#lleo_icons a.lleo_linguee    {background-position:-81px 0 !important;}
+#lleo_icons a.lleo_michaelis  {background-position:-98px 0 !important;}
+
+
+
+
+#lleo_dialog #lleo_contextContainer {
+    margin: 0 !important;
+    padding: 3px 15px 3px 10px !important;
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#eee)) !important;
+    border-bottom: solid 1px #ddd !important;
+    border-top-left-radius: 3px !important;
+    border-top-right-radius: 3px !important;
+    display: none !important;
+    overflow: hidden !important;
+}
+#lleo_dialog .lleo_has_context #lleo_contextContainer {
+    display: block !important;
+}
+#lleo_dialog #lleo_context {
+    color: #444 !important;
+    text-shadow: 1px 1px 0 #f4f4f4 !important;
+    line-height: 12px !important;
+    font-size: 11px !important;
+    margin-left: 2px !important;
+}
+#lleo_dialog #lleo_context b {
+    line-height: 12px !important;
+    color: #000 !important;
+    font-weight: bold !important;
+    font-size: 11px !important;
+}
+#lleo_dialog #lleo_gBrand {
+    color: #aaa !important;
+    font-size: 10px !important;
+    /*padding-right: 52px !important;*/
+    padding-bottom: 14px !important;
+    margin: -3px 4px 0 4px !important;
+    background: left bottom no-repeat !important;
+    display: inline-block !important;
+    float: right !important;
+}
+#lleo_dialog #lleo_gBrand.hidden {
+    display: none !important;
+}
+#lleo_dialog #lleo_translateContextLink {
+    color: #444 !important;
+    text-shadow: 1px 1px 0 #f4f4f4 !important;
+    background: -webkit-gradient(linear, left top, left bottom, from(#f4f4f4), to(#ddd)) !important;
+    border: solid 1px !important;
+    box-shadow: 1px 1px 0 #f6f6f6 !important;
+    border-color: #999 #aaa #aaa #999 !important;
+    -moz-border-radius: 2px !important;
+	-webkit-border-radius: 2px !important;
+	border-radius: 2px !important;
+    padding: 0 3px !important;
+    font-size: 11px !important;
+    text-decoration: none !important;
+    margin: 1px 5px 0 !important;
+    display: inline-block !important;
+    white-space: nowrap !important;
+}
+#lleo_dialog #lleo_translateContextLink:hover {
+    background: #f8f8f8 !important;
+}
+
+#lleo_dialog #lleo_setTransForm {
+    display: block !important;
+    margin-top: 3px !important;
+    padding-top: 5px !important;
+    /* Set position and background because the form might be overlapped by an image when no translations */
+    position: relative !important;
+    background: #fff !important;
+    z-index: 10 !important;
+    padding-bottom: 10px !important;
+    padding-left: 16px !important;
+}
+#lleo_dialog .lleo-custom-translation {
+    padding: 4px 5px !important;
+    border: solid 1px #ddd !important;
+    -moz-border-radius: 2px !important;
+	-webkit-border-radius: 2px !important;
+	border-radius: 2px !important;
+    width: 90% !important;
+    min-width: 270px !important;
+    background: -webkit-gradient(linear, 0 0, 0 20, from(#f1f1f1), to(#fff)) !important;
+	font: normal 13px Arial, Helvetica !important;
+	line-height: 15px !important;
+}
+#lleo_dialog .lleo-custom-translation:hover {
+    border: solid 1px #aaa !important;
+}
+#lleo_dialog .lleo-custom-translation:focus {
+    background: #FFFEC9 !important;
+}
+
+#lleo_dialog *.hidden {
+    display: none !important;
+}
+
+#lleo_dialog .infinitive{
+    color: #D56E00 !important;
+    text-decoration: none;
+    border-bottom: 1px dotted #D56E00 !important;
+}
+#lleo_dialog .infinitive:hover{
+    border: none !important;
+}
+
+
+#lleo_dialog #lleo_trans{
+    zoom: 1;
+    border-top: 1px solid #eeeeee !important;
+    margin: 10px 0 0 !important;
+    padding: 5px 30px 0 14px !important;
+}
+
+#lleo_dialog .lleo_clearfix {
+	display: block !important;
+	clear: both !important;
+	visibility: hidden !important;
+	height: 0 !important;
+	font-size: 0 !important;
+}
+
+#lleo_dialog #lleo_markBlock {
+    background: #eeeeee !important;
+	cursor: pointer !important; 
+	border-bottom-left-radius: 3px !important;
+	border-bottom-right-radius: 3px !important;
+	border-collapse: separate !important;
+	border-spacing: 2px !important; 
+}
+
+#lleo_dialog #lleo_markBlock img{
+	width: 14px !important;
+	height: 14px !important;
+}
+
+#lleo_dialog #lleo_markBlock .icon-cell {
+	padding: 5px 2px 5px 16px !important;
+	height: 17px !important;
+}
+
+#lleo_dialog #lleo_markBlock .wide-cell {
+	width: 100% !important;
+}
+
+#lleo_dialog #lleo_markBlock .text-cell {
+	color: #999999 !important; 
+    font: normal 13px Arial, Helvetica !important;
+    text-shadow: 0 1px #fff !important; 
+}
+
+#lleo_dialog #lleo_markBlock td {
+	vertical-align: middle !important;
+	border-collapse: separate !important;
+	border-spacing: 2px !important;
+}
+
+
+#lleo_dialog #lleo_picOuter table{
+    width: 44px !important;
+    position: absolute !important;
+    right: 0 !important;
+    vertical-align: middle !important;
+}
+
+#lleo_dialog #lleo_picOuter td{
+    width: 38px !important;
+    height: 38px !important;
+    border: 1px solid #eeeeee !important;
+    vertical-align: middle !important;
+    text-align: center !important;
+}
+
+#lleo_dialog #lleo_picOuter td div {
+	height: 38px !important;
+	overflow: hidden !important;
+}</style><style type="text/css">
+.ll-content-notification *{
+	letter-spacing: normal !important;
+	margin: 0 !important;
+    padding: 0 !important;
+	background: none !important;
+	border: 0 !important;
+	float: none !important;
+	text-align: left !important;
+	text-decoration: none !important;
+    font: normal 15px 'Lucida Grande', 'Lucida Sans Unicode', Lucida, Arial, Helvetica, sans-serif !important;
+}
+
+
+.ll-content-notification {
+    vertical-align: baseline !important;
+    color: #000 !important;
+    overflow: visible !important;
+    visibility: visible !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    position: fixed !important;
+    background: #fff !important;
+    border: solid 1px #AAA !important;
+	/*
+    left: -999px;
+    top: -999px;
+	*/
+    width: auto;
+    /* width: 300px !important; */
+    display: block;
+    z-index: 999999999 !important;
+    -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18) !important;
+    -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18) !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18) !important;
+    -webkit-border-radius: 3px !important;
+    -moz-border-radius: 3px !important;
+    border-radius: 3px !important;
+    overflow: hidden !important;
+    /* opacity: 0 !important; */
+    transition: opacity 0.8s !important;
+    -moz-transition: opacity 0.8s !important; /* Firefox 4 */
+    -webkit-transition: opacity 0.8s !important; /* Safari and Chrome */
+    -o-transition: opacity 0.8s !important; /* Opera */
+    cursor: default !important;
+}
+
+.ll-content-notification-shown {
+    opacity: 1 !important;
+    transition: opacity 0.8s !important;
+    -moz-transition: opacity 0.8s !important; /* Firefox 4 */
+    -webkit-transition: opacity 0.8s !important; /* Safari and Chrome */
+    -o-transition: opacity 0.8s !important; /* Opera */
+}
+
+.ll-content-notification-header {
+	border: 0 !important;
+	margin: 0 !important;
+    background: url(data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAABCAIAAABsYngUAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAadEVYdFNvZnR3YXJlAFBhaW50Lk5FVCB2My41LjEwMPRyoQAAABJJREFUGFdjePHmCxw9e/UZjgAVYhYtk8xZqAAAAABJRU5ErkJggg==) !important;
+    border-bottom: solid 1px #CCC !important;
+    padding: 1px 4px !important;
+	min-height: 18px !important;
+	width: 100% !important;
+	-webkit-border-top-left-radius: 3px !important;
+    -webkit-border-top-right-radius: 3px !important;
+    -moz-border-radius-topleft: 3px !important;
+    -moz-border-radius-topright: 3px !important;
+    border-top-left-radius: 3px !important;
+    border-top-right-radius: 3px !important;
+	border-collapse: collapse !important;
+	border-spacing: 0 !important;
+}
+
+.ll-content-notification-header-pic {
+	border: 0 !important;
+	margin: 0 !important;
+	padding: 3px 0 0 3px !important;
+	width: 20px !important;
+	vertical-align: top !important;
+	line-height: 1px !important;
+}
+
+.ll-content-notification-header-pic img{
+	border: 0 !important;
+	padding: 0 !important;
+	margin: 0 !important;
+	line-height: 1px !important;
+}
+
+
+.ll-content-notification-header-caption {
+    font: normal 13px 'Lucida Grande', 'Lucida Sans Unicode', Lucida, Arial, Helvetica, sans-serif !important;
+	font-weight: bold !important;
+    line-height: 15px !important;
+    color: #555 !important;
+    float: left !important;
+    text-shadow: none !important;
+    letter-spacing: normal !important;
+	white-space: normal !important;
+	padding: 3px !important;
+	margin: 0 !important;
+}
+
+.ll-content-notification-header-close {
+    width: 15px !important;
+	vertical-align: top !important;
+	text-align: right !important;
+	padding: 6px 5px 0 0 !important;
+	margin: 0 !important;
+	line-height: 1px !important;
+}
+
+.ll-content-notification-header-close img {
+	border: 0 !important;
+    width: 7px !important;
+    height: 7px !important;
+    margin: 0 !important;
+	padding: 0 !important;
+}
+
+.ll-content-notification-content {
+    margin: 0 !important;
+    padding: 8px !important;
+    float: left !important;
+    overflow: hidden !important;
+    width: auto !important;
+}
+
+.ll-content-notification-content-logo {
+    float: left !important;
+	height: 48px !important;
+	width: 48px !important;
+}
+
+.ll-content-notification-content-main {
+    margin-left: 60px !important;
+    overflow: hidden !important;
+    padding: 0 0 2px 0 !important;
+    color: #333 !important;
+    text-align: left !important;
+    text-shadow: none !important;
+    letter-spacing: normal !important;
+    font: normal 13px 'Lucida Grande', 'Lucida Sans Unicode', Lucida, Arial, Helvetica, sans-serif !important;
+    line-height: 15px !important;
+    width: auto !important;
+}
+
+.ll-content-notification-content-header {
+	text-align: left !important;
+	text-decoration: none !important;
+    font: bold 15px 'Lucida Grande', 'Lucida Sans Unicode', Lucida, Arial, Helvetica, sans-serif !important;
+    line-height: 19px !important;
+    margin: 0 0 4px 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    color: #333 !important;
+    text-shadow: none !important;
+    letter-spacing: normal !important;
+    display: block !important;
+    top: 0 !important;
+    left: 0 !important;
+}
+
+.ll-content-notification-word {
+    color: #d56e00 !important;
+    font-weight: bold !important;
+    font-size: 14px !important;
+}
+</style><style type="text/css"></style><script type="text/javascript" charset="utf-8" async="" src="./MFC Hex Editor Control_files/110.d00cda26434f9953f209.js.загружено"></script></head>
+
+<body>
+
+    <form method="post" action="http://www.blackbeltcoder.com/Articles/controls/mfc-hex-editor-control" id="form1">
+<div class="aspNetHidden">
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="">
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKLTk1NzYzNDAwNg9kFgJmD2QWAgIED2QWBmYPZBYEAgEPFgIeB1Zpc2libGVoZAIDDw8WAh4EVGV4dAUFTG9naW5kZAIBDw8WAh4ISW1hZ2VVcmwFEH4vaW1hZ2VzL2hkci5qcGdkZAIID2QWIAIDDw8WAh8BBRZNRkMgSGV4IEVkaXRvciBDb250cm9sZGQCBQ8PFgQfAQUNSm9uYXRoYW4gV29vZB4LTmF2aWdhdGVVcmwFOn4vVXNlclByb2ZpbGUuYXNweD9pZD05MmJhZmNlNi04OWRlLTQ0NWMtYThjZS0wN2IwZjZmMDIwY2FkZAIHDw8WAh8BBQoxMi8zMC8yMDEwZGQCCQ8WAh8BBTg8YSBjbGFzcz0ic21hbGx0YWciIGhyZWY9Ii9BcnRpY2xlcy5hc3B4P3RhZ3M9MiI+QysrPC9hPmQCCw8WAh8BBTg8YSBjbGFzcz0ic21hbGx0YWciIGhyZWY9Ii9BcnRpY2xlcy5hc3B4P3RhZ3M9NCI+TUZDPC9hPmQCDQ8WAh8BBTw8YSBjbGFzcz0ic21hbGx0YWciIGhyZWY9Ii9BcnRpY2xlcy5hc3B4P3RhZ3M9MyI+V2luZG93czwvYT5kAg8PDxYEHwEFBENQT0wfAwUTTGVnYWwvTGljZW5zZXMvQ1BPTGRkAhEPDxYCHwEFBjE3LDA3NWRkAhMPDxYEHwEFE0Rlc2t0b3AgRGV2ZWxvcG1lbnQfAwUgfi9zZWN0aW9ucy8xL2Rlc2t0b3AtZGV2ZWxvcG1lbnRkZAIVDw8WBB8BBQhDb250cm9scx8DBRN+L2FydGljbGVzL2NvbnRyb2xzZGQCFw8PFgQfAQUNVXNlciBDb250cm9scx8DBRZ+L2FydGljbGVzL2NvbnRyb2xzIzI5ZGQCGQ8PFgIfAQUWTUZDIEhleCBFZGl0b3IgQ29udHJvbGRkAh8PDxYEHwEFHVRoZSBDb2RlIFByb2plY3QgT3BlbiBMaWNlbnNlHwMFE0xlZ2FsL0xpY2Vuc2VzL0NQT0xkZAIhDw8WBh8CBTJ+L0F2YXRhcnMvOTJiYWZjZTYtODlkZS00NDVjLWE4Y2UtMDdiMGY2ZjAyMGNhLmpwZx8DBVZodHRwOi8vd3d3LmJsYWNrYmVsdGNvZGVyLmNvbS9Vc2VyUHJvZmlsZS5hc3B4P2lkPTkyYmFmY2U2LTg5ZGUtNDQ1Yy1hOGNlLTA3YjBmNmYwMjBjYR4HVG9vbFRpcAUNSm9uYXRoYW4gV29vZGRkAiMPDxYEHwEFDUpvbmF0aGFuIFdvb2QfAwVWaHR0cDovL3d3dy5ibGFja2JlbHRjb2Rlci5jb20vVXNlclByb2ZpbGUuYXNweD9pZD05MmJhZmNlNi04OWRlLTQ0NWMtYThjZS0wN2IwZjZmMDIwY2FkZAIlDxYCHwEF9ANJJiMzOTttIGEgc29mdHdhcmUvd2Vic2l0ZSBkZXZlbG9wZXIgd29ya2luZyBvdXQgb2YgdGhlIGdyZWF0ZXIgU2FsdCBMYWtlIENpdHkgYXJlYSBpbiBVdGFoLiBJJiMzOTt2ZSBkZXZlbG9wZWQgbWFueSB3ZWJzaXRlcyBpbmNsdWRpbmcgPGEgaHJlZj0iaHR0cDovL3d3dy5ibGFja2JlbHRjb2Rlci5jb20iIHJlbD0ibWUiIHRhcmdldD0iX2JsYW5rIj5CbGFjayBCZWx0IENvZGVyPC9hPiwgPGEgaHJlZj0iaHR0cDovL3d3dy5pbnNpZGVyYXJ0aWNsZXMuY29tIiByZWw9Im1lIiB0YXJnZXQ9Il9ibGFuayI+SW5zaWRlciBBcnRpY2xlczwvYT4sIGFuZCBvdGhlcnMuPGJyIC8+DQo8YnIgLz4NCkkgaGlrZSBlYWNoIHdlZWsgd2l0aCBteSBkb2dzIFN1a2kgYW5kIFNhc2hhLiBZb3UgY2FuIHNlZSBteSBoaWtpbmcgYmxvZyBhdCA8YSBocmVmPSJodHRwOi8vd3d3Lmhpa2luZ3NhbHRsYWtlLmNvbSIgcmVsPSJtZSIgdGFyZ2V0PSJfYmxhbmsiPkhpa2luZyBTYWx0IExha2U8L2E+LmQYAQUeX19Db250cm9sc1JlcXVpcmVQb3N0QmFja0tleV9fFgIFD2N0bDAwJGJ0blNlYXJjaAURY3RsMDAkYnRuQWR2YW5jZWSlugD3eMnkMUlS2zKf/SIayAlf/A==">
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['form1'];
+if (!theForm) {
+    theForm = document.form1;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEdAAW08KVfhpNbAhtlm9812ADG8NYIoo6z8t4kjWPZoGRiBOPt1qWUDW/Nq87Nip0964dVekZAH7n66iWui6apxhYLDp4uijw3Sd3nXQiLL+ZrbhLkqSBcLzEWUznhZ/noV0UeiHH7">
+</div>
+
+	
+
+<div id="loginbar">
+	
+	<a id="lnkLogin" href="javascript:__doPostBack(&#39;ctl00$LoginBar1$lnkLogin&#39;,&#39;&#39;)">Login</a>
+</div>
+
+
+    <div>
+
+		<div id="header">
+			<a id="imgHeader" title="Black Belt Coder: Free Developer Articles and Source Code" href="http://www.blackbeltcoder.com/" style="display:inline-block;height:75px;width:411px;"><img title="Black Belt Coder: Free Developer Articles and Source Code" src="./MFC Hex Editor Control_files/hdr.jpg" alt=""></a>
+		</div>
+
+		<div id="mainmenu">
+
+			<div id="searchbar">
+				<div id="Panel1" onkeypress="javascript:return WebForm_FireDefaultButton(event, &#39;btnSearch&#39;)">
+	
+					<input name="ctl00$txtSearch" type="text" id="txtSearch" class="vcenter">
+					<input type="image" name="ctl00$btnSearch" id="btnSearch" title="Search" class="vcenter" src="./MFC Hex Editor Control_files/search.png">
+					<input type="image" name="ctl00$btnAdvanced" id="btnAdvanced" title="Advanced Search" class="vcenter" src="http://www.blackbeltcoder.com/Images/adv.png" style="display: none !important;">
+				
+</div>
+			</div>
+
+			<a id="lnkHome" class="vcenter" href="http://www.blackbeltcoder.com/">Home</a>
+			<a id="lnkNews" class="vcenter" href="http://www.blackbeltcoder.com/NewsArticles.aspx">News</a>
+			<a id="lnkSubmit" class="vcenter" href="http://www.blackbeltcoder.com/Submit/">Submit Article</a>
+			<a id="lnkRss" href="http://www.blackbeltcoder.com/Feeds.aspx"><img id="Image1" title="Feeds and Social Networking Sites" class="vcenter" src="./MFC Hex Editor Control_files/rss.png" alt="Feeds and Social Networking Sites"></a>
+		</div>
+
+		<br>
+
+		<div>
+
+			<div id="maincontent">
+
+				<div style="text-align:center">
+					
+					<div style="text-align:center">
+						<!-- bbc_header_468x60_banner -->
+<script type="text/javascript">
+	GA_googleFillSlot("bbc_header_468x60_banner");
+</script>
+					</div>
+				</div>
+
+				<br>
+
+				
+
+	
+
+	<div class="hdrbox">
+
+		<div style="float: left; width: 500px">
+			<h1><span id="lblTitle">MFC Hex Editor Control</span></h1>
+			<span style="font-size: x-small; font-weight: normal;">
+				By <a id="lnkUser" href="http://www.blackbeltcoder.com/UserProfile.aspx?id=92bafce6-89de-445c-a8ce-07b0f6f020ca">Jonathan Wood</a> on
+				<span id="lblDate">12/30/2010</span>
+			</span>
+		</div>
+
+		<div class="summarybox">
+			<table>
+				<tbody><tr>
+					<td style="vertical-align:top">Language:</td>
+					<td>
+						<a class="smalltag" href="http://www.blackbeltcoder.com/Articles.aspx?tags=2">C++</a></td>
+				</tr>
+				<tr>
+					<td style="vertical-align:top">Technology:</td>
+					<td>
+						<a class="smalltag" href="http://www.blackbeltcoder.com/Articles.aspx?tags=4">MFC</a></td>
+				</tr>
+				<tr>
+					<td style="vertical-align:top">Platform:</td>
+					<td>
+						<a class="smalltag" href="http://www.blackbeltcoder.com/Articles.aspx?tags=3">Windows</a></td>
+				</tr>
+				<tr>
+					<td>License:</td>
+					<td><a id="lnkLicense" href="http://www.blackbeltcoder.com/Legal/Licenses/CPOL">CPOL</a></td>
+				</tr>
+				<tr>
+					<td>Views:</td>
+					<td><span id="lblViews">17,075</span></td>
+				</tr>
+			</tbody></table>
+		</div>
+
+		<div style="clear: both"></div>
+
+	</div>
+
+	<table style="width:100%">
+		<tbody><tr>
+			<td>
+				<span class="smalltext">
+					<a id="lnkSection" href="http://www.blackbeltcoder.com/sections/1/desktop-development">Desktop Development</a> »
+					<a id="lnkCategory" href="http://www.blackbeltcoder.com/Articles/controls">Controls</a> »
+					<a id="lnkSubcategory" href="http://www.blackbeltcoder.com/Articles/controls#29">User Controls</a> »
+					<span id="lblArticle">MFC Hex Editor Control</span>
+				</span>
+			</td>
+			<td>
+				<div style="float:right;width:180px">
+					<!-- AddThis Button BEGIN -->
+<div class="addthis_toolbox addthis_default_style">
+	<a class="addthis_button_google_plusone at300b"><div class="google_plusone_iframe_widget" style="width: 90px; height: 25px;"><span><div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; background: transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 70px; height: 15px;"><iframe frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 70px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 15px;" tabindex="0" vspace="0" width="100%" id="I0_1483811779351" name="I0_1483811779351" src="./MFC Hex Editor Control_files/fastbutton.html" data-gapiattached="true" title="+1"></iframe></div></span></div></a>
+	<a class="addthis_button_vk addthis_button_preferred_1 at300b" target="_blank" title="Vkontakte" href="http://www.blackbeltcoder.com/Articles/controls/mfc-hex-editor-control#"><span class="at-icon-wrapper" style="background-color: rgb(99, 131, 168); line-height: 16px; height: 16px; width: 16px;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" title="Vkontakte" alt="Vkontakte" class="at-icon at-icon-vk" style="width: 16px; height: 16px;"><g><path d="M26.712 10.96s-.167-.48-1.21-.348l-3.447.024a.785.785 0 0 0-.455.072s-.204.108-.3.37a22.1 22.1 0 0 1-1.28 2.695c-1.533 2.61-2.156 2.754-2.407 2.587-.587-.372-.43-1.51-.43-2.323 0-2.54.382-3.592-.756-3.868-.37-.084-.646-.144-1.616-.156-1.232-.012-2.274 0-2.86.287-.396.193-.695.624-.515.648.227.036.742.143 1.017.515 0 0 .3.49.347 1.568.13 2.982-.48 3.353-.48 3.353-.466.252-1.28-.167-2.478-2.634 0 0-.694-1.222-1.233-2.563-.097-.25-.288-.383-.288-.383s-.216-.168-.527-.216l-3.28.024c-.504 0-.683.228-.683.228s-.18.19-.012.587c2.562 6.022 5.483 9.04 5.483 9.04s2.67 2.79 5.7 2.597h1.376c.418-.035.634-.263.634-.263s.192-.214.18-.61c-.024-1.843.838-2.12.838-2.12.838-.262 1.915 1.785 3.065 2.575 0 0 .874.6 1.532.467l3.064-.048c1.617-.01.85-1.352.85-1.352-.06-.108-.442-.934-2.286-2.647-1.916-1.784-1.665-1.496.658-4.585 1.413-1.88 1.976-3.03 1.796-3.52z" fill-rule="evenodd"></path></g></svg></span></a>
+	<a class="addthis_button_odnoklassniki_ru addthis_button_preferred_2 at300b" target="_blank" title="Odnoklassniki" href="http://www.blackbeltcoder.com/Articles/controls/mfc-hex-editor-control#"><span class="at-icon-wrapper" style="background-color: rgb(213, 120, 25); line-height: 16px; height: 16px; width: 16px;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" title="Odnoklassniki" alt="Odnoklassniki" class="at-icon at-icon-odnoklassniki_ru" style="width: 16px; height: 16px;"><g><path d="M16.5 16.15A6.15 6.15 0 0 0 22.65 10c0-3.39-2.75-6.14-6.15-6.14-3.4 0-6.15 2.75-6.15 6.14.01 3.4 2.76 6.15 6.15 6.15zm0-9.17c1.67 0 3.02 1.35 3.02 3.02s-1.35 3.02-3.02 3.02-3.02-1.35-3.02-3.02 1.35-3.02 3.02-3.02zm7.08 9.92c-.35-.7-1.31-1.28-2.58-.27-1.73 1.36-4.5 1.36-4.5 1.36s-2.77 0-4.5-1.36c-1.28-1.01-2.24-.43-2.59.27-.6 1.22.08 1.8 1.62 2.79 1.32.85 3.13 1.16 4.3 1.28l-.98.98c-1.38 1.37-2.7 2.7-3.62 3.62-.55.55-.55 1.438 0 1.99l.17.17c.55.55 1.44.55 1.99 0l3.62-3.622 3.62 3.62c.55.55 1.44.55 1.99 0l.17-.17c.55-.55.55-1.44 0-1.99l-3.62-3.62-.98-.98c1.17-.12 2.96-.438 4.27-1.28 1.55-.988 2.23-1.58 1.62-2.788z"></path></g></svg></span></a>
+	<a class="addthis_button_facebook addthis_button_preferred_3 at300b" title="Facebook" href="http://www.blackbeltcoder.com/Articles/controls/mfc-hex-editor-control#"><span class="at-icon-wrapper" style="background-color: rgb(59, 89, 152); line-height: 16px; height: 16px; width: 16px;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" title="Facebook" alt="Facebook" class="at-icon at-icon-facebook" style="width: 16px; height: 16px;"><g><path d="M22 5.16c-.406-.054-1.806-.16-3.43-.16-3.4 0-5.733 1.825-5.733 5.17v2.882H9v3.913h3.837V27h4.604V16.965h3.823l.587-3.913h-4.41v-2.5c0-1.123.347-1.903 2.198-1.903H22V5.16z" fill-rule="evenodd"></path></g></svg></span></a>
+	<a class="addthis_button_twitter addthis_button_preferred_4 at300b" title="Twitter" href="http://www.blackbeltcoder.com/Articles/controls/mfc-hex-editor-control#"><span class="at-icon-wrapper" style="background-color: rgb(29, 161, 242); line-height: 16px; height: 16px; width: 16px;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" title="Twitter" alt="Twitter" class="at-icon at-icon-twitter" style="width: 16px; height: 16px;"><g><path d="M27.996 10.116c-.81.36-1.68.602-2.592.71a4.526 4.526 0 0 0 1.984-2.496 9.037 9.037 0 0 1-2.866 1.095 4.513 4.513 0 0 0-7.69 4.116 12.81 12.81 0 0 1-9.3-4.715 4.49 4.49 0 0 0-.612 2.27 4.51 4.51 0 0 0 2.008 3.755 4.495 4.495 0 0 1-2.044-.564v.057a4.515 4.515 0 0 0 3.62 4.425 4.52 4.52 0 0 1-2.04.077 4.517 4.517 0 0 0 4.217 3.134 9.055 9.055 0 0 1-5.604 1.93A9.18 9.18 0 0 1 6 23.85a12.773 12.773 0 0 0 6.918 2.027c8.3 0 12.84-6.876 12.84-12.84 0-.195-.005-.39-.014-.583a9.172 9.172 0 0 0 2.252-2.336" fill-rule="evenodd"></path></g></svg></span></a>
+	<a class="addthis_button_compact at300m" href="http://www.blackbeltcoder.com/Articles/controls/mfc-hex-editor-control#"><span class="at-icon-wrapper" style="background-color: rgb(255, 101, 80); line-height: 16px; height: 16px; width: 16px;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" title="More" alt="More" class="at-icon at-icon-addthis" style="width: 16px; height: 16px;"><g><path d="M18 14V8h-4v6H8v4h6v6h4v-6h6v-4h-6z" fill-rule="evenodd"></path></g></svg></span></a>
+
+<div class="atclear"></div></div>
+<script type="text/javascript">
+	var addthis_config = addthis_config||{};
+	addthis_config.data_track_addressbar = false;addthis_config.data_track_clickback = false;
+</script>
+<script type="text/javascript" src="./MFC Hex Editor Control_files/addthis_widget.js.загружено">
+
+</script>
+<!-- AddThis Button END -->
+
+				</div>
+			</td>
+		</tr>
+	</tbody></table>
+
+	<div class="article">
+		<p><img style="border:0" src="./MFC Hex Editor Control_files/HexEditor.jpg" title="Demo Project Screenshot" alt="Demo Project Screenshot"></p>
+
+<p><a style="text-decoration:none" href="http://www.blackbeltcoder.com/Articles/controls/mfc-hex-editor-control/HexEditor.zip">
+<img style="border:0" src="./MFC Hex Editor Control_files/download.png" alt="Download Source Code" title="Download Source Code">
+Download Source Code</a></p>
+
+<h2>Introduction</h2>
+
+<p>When I wrote my <a href="http://www.softcircuits.com/cygnus/" target="_blank">Cygnus Hex Editor</a> application a number of years ago, I developed some fairly sophisticated memory structures that made manipulating large files more efficient. After all, if a user loaded a 15MB file and then started typing away at the start of the file in insert mode, there had to be a little sleight of hand going on in the background to ensure the program could stay responsive.</p>
+
+<p>But I also had the need for a hex editor control that could be placed in dialog boxes. This editor wouldn't need to handle huge data files or support all the bells and whistles. Rather, it just needed to be able to perform basic editing operations on smaller amounts of data.</p>
+
+<p>So I decided to create a custom control for this purpose. In this article, I'll present code derived from the custom control I wrote back then. While it's simple, it does support all the standard operations such as insert and overwrite modes, making selections with the keyboard or mouse, auto scroll (when the mouse drags outside the window), clipboard operations, etc.</p>
+
+<h2>The CHexEdit Custom Control</h2>
+
+<p>The code is too long to insert it all into this article. Listing 1 shows the header file declaration for my <span class="kw">CHexEdit</span> control. It derives directly from <span class="kw">CWnd</span>, so all of the control's functionality is basically written from scratch.</p>
+
+<p>The static member <span class="kw">m_bIsRegistered</span> is initialized with the value returned from the static <span class="kw">RegisterWndClass()</span> method. A side effect of this arrangement is that the <span class="kw">RegisterWndClass()</span> method is called on the application's startup, which ensures the Windows class used by the control is registered before the control is ever used.</p>
+
+<p>The control was designed to be used in an MFC dialog box and may require changes to use in other scenarios. It performs most all of its initialization in the <span class="kw">CHexEdit</span> constructor because MFC control instances never receive a <span class="kw">WM_CREATE</span> message. Instead, the control instance is attached to the control when the dialog is initialized. By this time, the control window has already been created.</p>
+
+<p>One issue that came up during the design of the control was figuring out how to separate the private implementation from the public interface. I thought about creating two separate classes for this. However, MFC won't allow you to create two instances of Window classes that refer to the same window.</p>
+
+<p>Next, I looked at creating a simple class for using the control, and then deriving another class from the first that implements the control. This way, both classes could be used to refer to the same class instance, and window. However, this raised the possibility of new problems.</p>
+
+<p>To make a long story short, I managed to simplify things and keep everything in one class. It has some public members that can be used to control the class, in addition to the code that implements the controls internal functionality.</p>
+
+<p><b>Listing 1: CHexEdit Class Declaration</b></p>
+
+<pre class="code"><span class="code_key">class</span> CHexEdit : <span class="code_key">public</span> CWnd
+{
+<span class="code_key">public</span>:
+    CHexEdit(<span class="code_key">void</span>);
+    <span class="code_key">virtual</span> ~CHexEdit(<span class="code_key">void</span>);
+
+    <span class="code_com">// Public interface members</span>
+    <span class="code_key">int</span> GetDataLength() { <span class="code_key">return</span> m_nLength; }
+    <span class="code_key">int</span> SetData(<span class="code_key">int</span> nLength, BYTE* pBuffer);
+    <span class="code_key">int</span> GetData(<span class="code_key">int</span> nMaxLen, BYTE* pBuffer);
+    <span class="code_key">int</span> GetColumn() { <span class="code_key">return</span> m_bHexCol; }
+    <span class="code_key">void</span> SetColumn(<span class="code_key">int</span> nColumn) { m_bHexCol = (nColumn != 0); }
+    <span class="code_key">int</span> GetReadOnly() { <span class="code_key">return</span> m_bReadOnly; }
+    <span class="code_key">void</span> SetReadOnly(BOOL bReadOnly) { m_bReadOnly = bReadOnly; }
+    ULONG GetSelection();
+    <span class="code_key">void</span> SetSelection(<span class="code_key">int</span> nSelStart = 0, <span class="code_key">int</span> nSelEnd = 0);
+    <span class="code_key">int</span> InsertData(<span class="code_key">int</span> nCount);
+    <span class="code_key">int</span> DeleteData(<span class="code_key">int</span> nCount);
+    <span class="code_key">int</span> GetPosition() { <span class="code_key">return</span> m_nPosition; }
+    <span class="code_key">int</span> SetPosition(<span class="code_key">int</span> nPos);
+    BOOL GetWideView() { <span class="code_key">return</span> (BOOL)(m_nBytesPerRow == 0x10); }
+    <span class="code_key">void</span> SetWideView(BOOL bWideView);
+    BOOL GetInsertMode() { <span class="code_key">return</span> m_bInsertMode; }
+    <span class="code_key">void</span> SetInsertMode(BOOL bMode, BOOL bToggle = TRUE);
+    <span class="code_key">void</span> LimitLength(<span class="code_key">int</span> nLimit);
+    <span class="code_key">void</span> ShowAllAscii(BOOL bShowAllAscii);
+
+<span class="code_key">protected</span>:
+
+    <span class="code_com">// Internal implementation members</span>
+    <span class="code_key">static</span> BOOL RegisterWndClass();
+
+    <span class="code_key">void</span> SetDisplayMetrics();
+    <span class="code_key">void</span> ClearAll();
+    <span class="code_key">int</span> GetClientRows();
+    <span class="code_key">int</span> Insert(<span class="code_key">int</span> nCount);
+    <span class="code_key">int</span> Delete(<span class="code_key">int</span> nCount);
+
+    <span class="code_key">int</span> OffsetFromPoint(CPoint point);
+    <span class="code_key">void</span> GetCaretXY(POINT&amp; point);
+    <span class="code_key">void</span> SetCaret(POINT&amp; point);
+    <span class="code_key">void</span> SetCaret();
+    <span class="code_key">void</span> SetCurrPos(<span class="code_key">int</span> nPosition, <span class="code_key">int</span> nSelAction = HEX_SEL_CLEAR, <span class="code_key">int</span> bInByte = 0);
+    <span class="code_key">void</span> SetScroll(<span class="code_key">int</span> nTopPosition);
+
+    BOOL HasSelection() { <span class="code_key">return</span> m_nSelStart != m_nSelEnd; }
+    <span class="code_key">int</span> GetSelLength() { <span class="code_key">return</span> m_nSelEnd - m_nSelStart; }
+    <span class="code_key">void</span> DeleteSelection();
+
+    BOOL CanPaste();
+    COleDataSource* CreateDataSource();
+    BOOL DoPasteData(COleDataObject* pDataObject);
+
+    <span class="code_key">void</span> GetOffsetString(TCHAR* sBuffer, <span class="code_key">int</span> nOffset);
+    <span class="code_key">void</span> GetHexString(TCHAR* sBuffer, BYTE* lpBuffer, <span class="code_key">int</span> nCount);
+    <span class="code_key">void</span> GetChrString(TCHAR* sBuffer, BYTE* lpBuffer, <span class="code_key">int</span> nCount);
+
+    CSize GetClientSize();
+    <span class="code_key">void</span> Update(<span class="code_key">int</span> nHint = HEX_HINT_ALL, <span class="code_key">int</span> nStart = 0, <span class="code_key">int</span> nEnd = 0);
+    <span class="code_key">void</span> UpdateScrollbar();
+
+<span class="code_key">protected</span>:
+
+    <span class="code_com">// Data members</span>
+    <span class="code_key">static</span> <span class="code_key">const</span> TCHAR m_szWndClassName[];
+    <span class="code_key">static</span> UINT m_cfFormat;
+    <span class="code_key">static</span> BOOL m_bIsRegistered;
+
+    BYTE* m_pBuffer;
+    <span class="code_key">int</span> m_nLength;
+
+    <span class="code_key">int</span> m_nPosition;
+    <span class="code_key">int</span> m_nTopPosition;
+    BOOL m_bInByte;
+    BOOL m_bCaretIsVisible;
+    BOOL m_bTrailingCaret;
+    <span class="code_key">int</span> m_nSelStart, m_nSelEnd;
+    <span class="code_key">int</span> m_nSelAnchor;
+    <span class="code_key">int</span> m_nTimerID;
+
+    CSize m_CharSize;
+    COLUMN_METRICS m_ColMetrics[3];
+
+    BOOL m_bInsertMode;
+    BOOL m_bInsertToggle;
+    BOOL m_bHexCol;
+    BOOL m_bReadOnly;
+    <span class="code_key">int</span> m_nBytesPerRow;
+    <span class="code_key">int</span> m_nLimit;
+    BOOL m_bShowAllChars;
+
+<span class="code_key">protected</span>:
+
+    <span class="code_com">// Generated message map functions</span>
+    afx_msg <span class="code_key">void</span> OnPaint();
+    afx_msg UINT OnGetDlgCode();
+    afx_msg <span class="code_key">void</span> OnSetFocus(CWnd* pOldWnd);
+    afx_msg <span class="code_key">void</span> OnKillFocus(CWnd* pNewWnd);
+    afx_msg <span class="code_key">void</span> OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
+    afx_msg <span class="code_key">void</span> OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
+    afx_msg <span class="code_key">void</span> OnLButtonDown(UINT nFlags, CPoint point);
+    afx_msg <span class="code_key">void</span> OnLButtonUp(UINT nFlags, CPoint point);
+    afx_msg <span class="code_key">void</span> OnMouseMove(UINT nFlags, CPoint point);
+    afx_msg <span class="code_key">void</span> OnTimer(UINT nIDEvent);
+    afx_msg <span class="code_key">void</span> OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
+    afx_msg <span class="code_key">void</span> OnEditPaste();
+    afx_msg <span class="code_key">void</span> OnEditCopy();
+    afx_msg <span class="code_key">void</span> OnEditCut();
+    afx_msg <span class="code_key">void</span> OnEditDelete();
+    afx_msg <span class="code_key">void</span> OnContextMenu(CWnd* pWnd, CPoint point);
+
+    DECLARE_MESSAGE_MAP()
+<span class="code_key">public</span>:
+    afx_msg <span class="code_key">void</span> OnEditSelectAll();
+};
+</pre>
+
+<h2>Using the Control</h2>
+
+<p>As previously stated, the <span class="kw">CHexEdit</span> control was designed to be placed on a dialog box. To do this, start by adding a Custom Control resource to your dialog box.</p>
+
+<p>Set the control's class to "SoftCircuitsHexEdit". This is the name that <span class="kw">RegisterWndClass()</span> used to register the Windows class. Also, we won't be using the Caption property so you can delete that.</p>
+
+<p>I set the Style property to 0x50810000 and the Extended Style property to 0x0. You may want to use different styles to change the appearance or behavior of the control. However, it can be a little awkward when working with custom controls because the properties window doesn't provide as much help as it does for "known" controls.</p>
+
+<p>Next, create a control variable by right clicking on the custom control and selecting the Add Variable command. Make sure Category is set to Control. For most controls, this step is optional and just makes it easier to interface with a dialog control. However, here, it's absolutely necessary. If you fail to do this step, the <span class="kw">CHexEdit</span> class is never instantiated, and the control will have no functionality.</p>
+
+<p>Next, your project needs to define a menu resource with the ID <span class="kw">IDR_HEXCTRLMENU</span>. This is the context menu used by the control. Supported commands in this menu include <span class="kw">ID_EDIT_CUT</span>, <span class="kw">ID_EDIT_COPY</span>, <span class="kw">ID_EDIT_PASTE</span>, <span class="kw">ID_EDIT_DELETE</span>, and <span class="kw">ID_EDIT_SELECT_ALL</span>.</p>
+
+<p>Finally, ensure that your application calls the MFC function <span class="kw">AfxOleInit()</span> at some point during initialization. This is needed by the hex editor control for the clipboard routines to work. If you have a large project, you may already be calling this function. Otherwise, you'll need to add a call to this function.</p>
+
+<p>That should be about all you need. You can review the public class members at the top of HexEdit.h. You can call these methods on the control variable you created to interface with the control.</p>
+
+<p>Note that the Tab key is used to switch between the hex and ASCII columns. To tab to the next control in the dialog box, you'll need to use Ctrl+Tab.</p>
+
+<h2>Conclusion</h2>
+
+<p>Where some characters can mess up a regular EDIT control, the hex editor control will handle any sequence of bytes. So this control works great for editing any type of binary data. Perhaps you can find a use for it in your projects.</p>
+
+
+		<h2>End-User License</h2>
+		<p>
+			Use of this article and any related source code or other files is governed
+			by the terms and conditions of
+			<a id="lnkLicenseFooter" href="http://www.blackbeltcoder.com/Legal/Licenses/CPOL">The Code Project Open License</a>.
+		</p>
+
+		<h2>Author Information</h2>
+		<p id="authorpara">
+			<a id="imgAuthor" title="Jonathan Wood" href="http://www.blackbeltcoder.com/UserProfile.aspx?id=92bafce6-89de-445c-a8ce-07b0f6f020ca"><img title="Jonathan Wood" src="./MFC Hex Editor Control_files/92bafce6-89de-445c-a8ce-07b0f6f020ca.jpg" alt=""></a>
+			<b><a id="lnkAuthor" href="http://www.blackbeltcoder.com/UserProfile.aspx?id=92bafce6-89de-445c-a8ce-07b0f6f020ca">Jonathan Wood</a></b><br><br>
+			I'm a software/website developer working out of the greater Salt Lake City area in Utah. I've developed many websites including <a href="http://www.blackbeltcoder.com/" rel="me" target="_blank">Black Belt Coder</a>, <a href="http://www.insiderarticles.com/" rel="me" target="_blank">Insider Articles</a>, and others.<br>
+<br>
+I hike each week with my dogs Suki and Sasha. You can see my hiking blog at <a href="http://www.hikingsaltlake.com/" rel="me" target="_blank">Hiking Salt Lake</a>.
+		</p>
+
+	</div>
+
+
+
+				<br>
+
+				
+
+					
+					<div style="text-align:center">
+						<!-- bbc_footer_468x60_banner -->
+<script type="text/javascript">
+	GA_googleFillSlot("bbc_footer_468x60_banner");
+</script>
+					</div>
+
+				
+
+			</div>
+
+			<div id="navbar">
+
+				<div id="DeptMenu1" class="navmenu">
+	<div class="navheader">
+		Departments
+	</div>
+	<div class="navsection">
+		<a onclick="return ShowNavSection(&#39;DeptMenu1&#39;, &#39;DeptMenu1_section1&#39;);" href="http://www.blackbeltcoder.com/Articles/controls/mfc-hex-editor-control#">Desktop Development</a>
+	</div><div id="DeptMenu1_section1" class="navitems" style="display: block;">
+		<div id="DeptMenu1_section1_controls" class="navitemcurr">
+			<a href="http://www.blackbeltcoder.com/Articles/controls">Controls</a>
+		</div>
+		<div id="DeptMenu1_section1_files" class="navitem">
+			<a href="http://www.blackbeltcoder.com/Articles/files">Files &amp; Directories</a>
+		</div>
+		<div id="DeptMenu1_section1_client" class="navitem">
+			<a href="http://www.blackbeltcoder.com/Articles/client">Web Clients</a>
+		</div>
+
+	</div>
+	<div class="navsection">
+		<a onclick="return ShowNavSection(&#39;DeptMenu1&#39;, &#39;DeptMenu1_section2&#39;);" href="http://www.blackbeltcoder.com/Articles/controls/mfc-hex-editor-control#">Web Development</a>
+	</div><div id="DeptMenu1_section2" class="navitems" style="display:none;">
+		<div id="DeptMenu1_section2_asp" class="navitem">
+			<a href="http://www.blackbeltcoder.com/Articles/asp">ASP.NET</a>
+		</div>
+		<div id="DeptMenu1_section2_aspnetcontrols" class="navitem">
+			<a href="http://www.blackbeltcoder.com/Articles/aspnetcontrols">ASP.NET Controls</a>
+		</div>
+		<div id="DeptMenu1_section2_script" class="navitem">
+			<a href="http://www.blackbeltcoder.com/Articles/script">Client Scripting</a>
+		</div>
+		<div id="DeptMenu1_section2_ecommerce" class="navitem">
+			<a href="http://www.blackbeltcoder.com/Articles/ecommerce">E-Commerce</a>
+		</div>
+		<div id="DeptMenu1_section2_graphics" class="navitem">
+			<a href="http://www.blackbeltcoder.com/Articles/graphics">Graphics &amp; Charts</a>
+		</div>
+		<div id="DeptMenu1_section2_html" class="navitem">
+			<a href="http://www.blackbeltcoder.com/Articles/html">HTML &amp; CSS</a>
+		</div>
+		<div id="DeptMenu1_section2_security" class="navitem">
+			<a href="http://www.blackbeltcoder.com/Articles/security">Security</a>
+		</div>
+		<div id="DeptMenu1_section2_services" class="navitem">
+			<a href="http://www.blackbeltcoder.com/Articles/services">Web Services and APIs</a>
+		</div>
+
+	</div>
+	<div class="navsection">
+		<a onclick="return ShowNavSection(&#39;DeptMenu1&#39;, &#39;DeptMenu1_section3&#39;);" href="http://www.blackbeltcoder.com/Articles/controls/mfc-hex-editor-control#">Frameworks &amp; Libraries</a>
+	</div><div id="DeptMenu1_section3" class="navitems" style="display:none;">
+		<div id="DeptMenu1_section3_net" class="navitem">
+			<a href="http://www.blackbeltcoder.com/Articles/net">.NET</a>
+		</div>
+		<div id="DeptMenu1_section3_ado" class="navitem">
+			<a href="http://www.blackbeltcoder.com/Articles/ado">ADO.NET</a>
+		</div>
+		<div id="DeptMenu1_section3_linq" class="navitem">
+			<a href="http://www.blackbeltcoder.com/Articles/linq">LINQ</a>
+		</div>
+		<div id="DeptMenu1_section3_mfc" class="navitem">
+			<a href="http://www.blackbeltcoder.com/Articles/mfc">MFC</a>
+		</div>
+		<div id="DeptMenu1_section3_winforms" class="navitem">
+			<a href="http://www.blackbeltcoder.com/Articles/winforms">WinForms</a>
+		</div>
+
+	</div>
+	<div class="navsection">
+		<a onclick="return ShowNavSection(&#39;DeptMenu1&#39;, &#39;DeptMenu1_section4&#39;);" href="http://www.blackbeltcoder.com/Articles/controls/mfc-hex-editor-control#">General Programming</a>
+	</div><div id="DeptMenu1_section4" class="navitems" style="display:none;">
+		<div id="DeptMenu1_section4_algorithms" class="navitem">
+			<a href="http://www.blackbeltcoder.com/Articles/algorithms">Algorithms</a>
+		</div>
+		<div id="DeptMenu1_section4_games" class="navitem">
+			<a href="http://www.blackbeltcoder.com/Articles/games">Games</a>
+		</div>
+		<div id="DeptMenu1_section4_graph" class="navitem">
+			<a href="http://www.blackbeltcoder.com/Articles/graph">Graphics</a>
+		</div>
+		<div id="DeptMenu1_section4_simulations" class="navitem">
+			<a href="http://www.blackbeltcoder.com/Articles/simulations">Simulations</a>
+		</div>
+		<div id="DeptMenu1_section4_data" class="navitem">
+			<a href="http://www.blackbeltcoder.com/Articles/data">SQL &amp; Other Databases</a>
+		</div>
+		<div id="DeptMenu1_section4_strings" class="navitem">
+			<a href="http://www.blackbeltcoder.com/Articles/strings">Text Handling</a>
+		</div>
+		<div id="DeptMenu1_section4_time" class="navitem">
+			<a href="http://www.blackbeltcoder.com/Articles/time">Time &amp; Date</a>
+		</div>
+
+	</div>
+	<div class="navsection">
+		<a onclick="return ShowNavSection(&#39;DeptMenu1&#39;, &#39;DeptMenu1_sectionRes&#39;);" href="http://www.blackbeltcoder.com/Articles/controls/mfc-hex-editor-control#">Other Resources</a>
+	</div><div id="DeptMenu1_sectionRes" class="navitems" style="display:none;">
+		<div id="DeptMenu1_sectionRes_charclass" class="navitem">
+			<a href="http://www.blackbeltcoder.com/Resources/CharClass.aspx">.NET Char Classifications</a>
+		</div>
+		<div id="DeptMenu1_sectionRes_javafmt" class="navitem">
+			<a href="http://www.blackbeltcoder.com/Resources/JSFormatter.aspx">JavaScript Formatter</a>
+		</div>
+		<div id="DeptMenu1_sectionRes_machkey" class="navitem">
+			<a href="http://www.blackbeltcoder.com/Resources/MachineKey.aspx">Machine Key Generator</a>
+		</div>
+
+	</div>
+
+</div>
+
+				<br>
+
+				<div id="TagMenu1" class="navmenu">
+	<div class="navheader">
+		Tags
+	</div>
+	<div class="navsection">
+		<a onclick="return ShowNavSection(&#39;TagMenu1&#39;, &#39;TagMenu1_section1&#39;);" href="http://www.blackbeltcoder.com/Articles/controls/mfc-hex-editor-control#">Languages</a>
+	</div><div id="TagMenu1_section1" class="navitems" style="display:none;">
+		<div id="TagMenu1_section1_1" class="navitem">
+			<a href="http://www.blackbeltcoder.com/Articles.aspx?tags=1">C#</a>
+		</div>
+		<div id="TagMenu1_section1_2" class="navitem">
+			<a href="http://www.blackbeltcoder.com/Articles.aspx?tags=2">C++</a>
+		</div>
+		<div id="TagMenu1_section1_20" class="navitem">
+			<a href="http://www.blackbeltcoder.com/Articles.aspx?tags=20">CIL</a>
+		</div>
+		<div id="TagMenu1_section1_11" class="navitem">
+			<a href="http://www.blackbeltcoder.com/Articles.aspx?tags=11">HTML</a>
+		</div>
+		<div id="TagMenu1_section1_10" class="navitem">
+			<a href="http://www.blackbeltcoder.com/Articles.aspx?tags=10">JavaScript</a>
+		</div>
+		<div id="TagMenu1_section1_9" class="navitem">
+			<a href="http://www.blackbeltcoder.com/Articles.aspx?tags=9">VB.NET</a>
+		</div>
+
+	</div>
+	<div class="navsection">
+		<a onclick="return ShowNavSection(&#39;TagMenu1&#39;, &#39;TagMenu1_section2&#39;);" href="http://www.blackbeltcoder.com/Articles/controls/mfc-hex-editor-control#">Technologies</a>
+	</div><div id="TagMenu1_section2" class="navitems" style="display:none;">
+		<div id="TagMenu1_section2_5" class="navitem">
+			<a href="http://www.blackbeltcoder.com/Articles.aspx?tags=5">.NET</a>
+		</div>
+		<div id="TagMenu1_section2_14" class="navitem">
+			<a href="http://www.blackbeltcoder.com/Articles.aspx?tags=14">ADO.NET</a>
+		</div>
+		<div id="TagMenu1_section2_12" class="navitem">
+			<a href="http://www.blackbeltcoder.com/Articles.aspx?tags=12">AJAX</a>
+		</div>
+		<div id="TagMenu1_section2_6" class="navitem">
+			<a href="http://www.blackbeltcoder.com/Articles.aspx?tags=6">ASP.NET</a>
+		</div>
+		<div id="TagMenu1_section2_15" class="navitem">
+			<a href="http://www.blackbeltcoder.com/Articles.aspx?tags=15">HTML</a>
+		</div>
+		<div id="TagMenu1_section2_17" class="navitem">
+			<a href="http://www.blackbeltcoder.com/Articles.aspx?tags=17">jQuery</a>
+		</div>
+		<div id="TagMenu1_section2_13" class="navitem">
+			<a href="http://www.blackbeltcoder.com/Articles.aspx?tags=13">LINQ</a>
+		</div>
+		<div id="TagMenu1_section2_4" class="navitem">
+			<a href="http://www.blackbeltcoder.com/Articles.aspx?tags=4">MFC</a>
+		</div>
+		<div id="TagMenu1_section2_18" class="navitem">
+			<a href="http://www.blackbeltcoder.com/Articles.aspx?tags=18">MVC</a>
+		</div>
+		<div id="TagMenu1_section2_16" class="navitem">
+			<a href="http://www.blackbeltcoder.com/Articles.aspx?tags=16">SQL</a>
+		</div>
+		<div id="TagMenu1_section2_8" class="navitem">
+			<a href="http://www.blackbeltcoder.com/Articles.aspx?tags=8">WebForms</a>
+		</div>
+		<div id="TagMenu1_section2_7" class="navitem">
+			<a href="http://www.blackbeltcoder.com/Articles.aspx?tags=7">WinForms</a>
+		</div>
+
+	</div>
+	<div class="navsection">
+		<a onclick="return ShowNavSection(&#39;TagMenu1&#39;, &#39;TagMenu1_section3&#39;);" href="http://www.blackbeltcoder.com/Articles/controls/mfc-hex-editor-control#">Platforms</a>
+	</div><div id="TagMenu1_section3" class="navitems" style="display:none;">
+		<div id="TagMenu1_section3_3" class="navitem">
+			<a href="http://www.blackbeltcoder.com/Articles.aspx?tags=3">Windows</a>
+		</div>
+
+	</div>
+
+</div>
+
+				<br>
+
+				
+				<div style="text-align:center">
+					<!-- bbc_sidebar_160x600_tower -->
+<script type="text/javascript">
+	GA_googleFillSlot("bbc_sidebar_160x600_tower");
+</script>
+				</div>
+
+				
+
+				<p style="font-size:25%">&nbsp;</p>
+
+				<div style="text-align:center">
+
+					
+                    <a href="http://www.insiderarticles.com/" style="color: white">Insider Articles</a>
+
+					<p style="font-size:50%">&nbsp;</p>
+
+				</div>
+
+			</div>
+
+		</div>
+
+		<div style="clear:both">&nbsp;</div>
+
+		<div id="footer">
+
+			<a id="_lnkHome" href="http://www.blackbeltcoder.com/">Home</a> •
+			<a id="_lnkAbout" href="http://www.blackbeltcoder.com/About.aspx">About</a> •
+			<a id="_lnkLink" href="http://www.blackbeltcoder.com/LinkToUs.aspx/">Link to Us</a> •
+			<a id="_lnkSubmit" href="http://www.blackbeltcoder.com/Submit/">Submit Article</a> •
+			<a id="_lnkContact" href="http://www.blackbeltcoder.com/Contact.aspx">Contact</a> •
+			<a id="_lnkAdvertise" href="http://www.blackbeltcoder.com/Advertisers/">Advertise</a> •
+			<a id="_lnkTerms" href="http://www.blackbeltcoder.com/Legal/Terms.aspx">Terms of Service</a>
+
+			<br>
+
+			Copyright © 2017 <a href="http://www.scwebgroup.com/">SC Web Group</a>. All Rights Reserved.
+		</div>
+
+    </div>
+    
+<script src="./MFC Hex Editor Control_files/WebResource.axd" type="text/javascript"></script>
+
+
+<script type="text/javascript">
+//<![CDATA[
+SetNavCurrent('DeptMenu1', 'controls');//]]>
+</script>
+</form><div id="_atssh" style="visibility: hidden; height: 1px; width: 1px; position: absolute; top: -9999px; z-index: 100000;"><iframe id="_atssh867" title="AddThis utility frame" src="./MFC Hex Editor Control_files/sh.92bb263c60d77a822f41d4b0.html" style="height: 1px; width: 1px; position: absolute; top: 0px; z-index: 100000; border: 0px; left: 0px;"></iframe></div><style id="service-icons-0"></style>
+
+
+
+<iframe name="oauth2relay369668150" id="oauth2relay369668150" src="./MFC Hex Editor Control_files/postmessageRelay.html" tabindex="-1" aria-hidden="true" style="width: 1px; height: 1px; position: absolute; top: -100px;"></iframe></body></html>

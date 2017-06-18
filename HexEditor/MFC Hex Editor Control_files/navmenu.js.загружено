@@ -1,0 +1,35 @@
+﻿function ShowNavSection(menuId, sectionId) {
+	var menu = document.getElementById(menuId);
+	var section = document.getElementById(sectionId);
+	for (var i = 0; i < menu.childNodes.length; i++) {
+		var el = menu.childNodes[i];
+		if (el.className == 'navitems' && el != section)
+			el.style.display = 'none';
+	}
+	if (section.style.display == 'block')
+		section.style.display = 'none';
+	else section.style.display = 'block';
+	return false;
+}
+
+function SetNavCurrent(menuId, itemId) {
+	var menu = document.getElementById(menuId);
+	if (menu) {
+		for (var i = 0; i < menu.childNodes.length; i++) {
+			var items = menu.childNodes[i];
+			if (items.className == 'navitems') {
+				for (var j = 0; j < items.childNodes.length; j++) {
+					var el = items.childNodes[j];
+					if (el.tagName == 'DIV') {
+						if (el.id == items.id + '_' + itemId) {
+							el.className = 'navitemcurr';
+							ShowNavSection(menuId, items.id);
+						}
+						else el.className = 'navitem';
+					}
+				}
+			}
+		}
+	}
+	return false;
+}
